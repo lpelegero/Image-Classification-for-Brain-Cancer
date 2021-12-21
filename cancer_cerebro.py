@@ -35,9 +35,7 @@ directories = []
 dircount = []
 prevRoot=''
 cant=0
- 
 print("leyendo imagenes de ",imgpath)
- 
 for root, dirnames, filenames in os.walk(imgpath):
     for filename in filenames:
         if re.search("\.(png)$", filename):
@@ -56,7 +54,6 @@ for root, dirnames, filenames in os.walk(imgpath):
                 dircount.append(cant)
                 cant=0
 dircount.append(cant)
- 
 dircount = dircount[1:]
 dircount[0]=dircount[0]+1
 print('Directorios leidos:',len(directories))
@@ -128,16 +125,12 @@ model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=(200, 200, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
-
-
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
-
 model.add(Conv2D(64, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
-
 model.add(tf.keras.layers.Flatten(input_shape=(200, 200)))  # Con Flatten convertimos a un vector 1D en vez de 3D
 model.add(Dense(64))
 model.add(Activation('relu'))
@@ -149,9 +142,7 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',
               metrics=[keras.metrics.Precision(), keras.metrics.Recall(), keras.metrics.SpecificityAtSensitivity(0.5), keras.metrics.SensitivityAtSpecificity(0.5), 'accuracy'])
-
 model.summary()
-
 batch_size = 16
 
 # Esta es la configuración de aumento que usaremos para el entrenamiento
@@ -197,23 +188,20 @@ model.save_weights('modelo.h5')  # Guardamos los pesos despues de realizar el en
 scoreSeg = model.evaluate_generator(validation_generator, 420)
 print(scoreSeg)
 
+#Grafico exactitud y perdida vs ciclos.
 epochs=100
 import matplotlib.pyplot as plt
 acc = history.history['accuracy']
 val_acc = history.history['val_accuracy']
-
 loss = history.history['loss']
 val_loss = history.history['val_loss']
-
 epochs_range = range(epochs)
-
 plt.figure(figsize=(8, 8))
 plt.subplot(1, 2, 1)
 plt.plot(epochs_range, acc, label='Training Accuracy')
 plt.plot(epochs_range, val_acc, label='Validation Accuracy')
 plt.legend(loc='lower right')
 plt.title('Training and Validation Accuracy')
-
 plt.subplot(1, 2, 2)
 plt.plot(epochs_range, loss, label='Training Loss')
 plt.plot(epochs_range, val_loss, label='Validation Loss')
@@ -225,13 +213,12 @@ plt.show()
 print("Training Accuracy:"), print(history.history['accuracy'][-1])
 print("Testing Accuracy:"), print (history.history['val_accuracy'][-1])
 
+#Grafico sensibilidad y especificidad vs ciclos.
 epochs=100
 import matplotlib.pyplot as plt
 spec = history.history['specificity_at_sensitivity']
 val_sens = history.history['sensitivity_at_specificity']
-
 epochs_range = range(epochs)
-
 plt.figure(figsize=(8, 8))
 plt.plot(epochs_range, spec, label='specificity vs sensitivity ')
 plt.plot(epochs_range, val_sens, label='sensitivity vs specificity')
@@ -262,7 +249,6 @@ def make_confusion_matrix(y_true, y_pred, classes = None, figsize = (10, 10),
   text_size: Tamaño de la fuente en la matriz de confusión
   """
 
-  
   cm = confusion_matrix(y_true, y_pred)
   cm_norm = cm.astype('float') / cm.sum(axis = 1) [:, np.newaxis]
   n_classes = cm.shape[0]
