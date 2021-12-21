@@ -11,7 +11,6 @@ Original file is located at
 from google.colab import drive
 drive.mount('/content/drive', force_remount=True)
 
-# Commented out IPython magic to ensure Python compatibility.
 #Importamos todas las librerias necesarias para construir el modelo
 import os
 import re
@@ -300,7 +299,7 @@ make_confusion_matrix(y_true, y_pred, classes = ['Meniongina','Glioma','Pituitar
 
 model.save('/content/drive/MyDrive/flask/model.hdf5')
 
-# Commented out IPython magic to ensure Python compatibility.
+
 !mkdir -p /drive/ngrok-ssh
 # %cd /drive/ngrok-ssh
 !wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O ngrok-stable-linux-amd64.zip
