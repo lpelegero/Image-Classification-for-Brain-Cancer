@@ -198,20 +198,19 @@ val_loss = history.history['val_loss']
 epochs_range = range(epochs)
 plt.figure(figsize=(8, 8))
 plt.subplot(1, 2, 1)
-plt.plot(epochs_range, acc, label='Training Accuracy')
-plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+plt.plot(epochs_range, acc, label='exactitud entrenamiento')
+plt.plot(epochs_range, val_acc, label='exactitud validacion')
 plt.legend(loc='lower right')
-plt.title('Training and Validation Accuracy')
+plt.title('Exactitud en Entrenamiento y validacion')
 plt.subplot(1, 2, 2)
-plt.plot(epochs_range, loss, label='Training Loss')
-plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.plot(epochs_range, loss, label='Perdida entrenamiento')
+plt.plot(epochs_range, val_loss, label='Perdida validacion')
 plt.legend(loc='upper right')
-plt.title('Training and Validation Loss')
+plt.title('Perdida en entrenamiento y valdiacion')
 plt.show()
- 
 #devuelve la precisión del entrenamiento
-print("Training Accuracy:"), print(history.history['accuracy'][-1])
-print("Testing Accuracy:"), print (history.history['val_accuracy'][-1])
+print("Precision entrenamiento:"), print(history.history['accuracy'][-1])
+print("Precision validacion"), print (history.history['val_accuracy'][-1])
 
 #Grafico sensibilidad y especificidad vs ciclos.
 epochs=100
@@ -220,15 +219,14 @@ spec = history.history['specificity_at_sensitivity']
 val_sens = history.history['sensitivity_at_specificity']
 epochs_range = range(epochs)
 plt.figure(figsize=(8, 8))
-plt.plot(epochs_range, spec, label='specificity vs sensitivity ')
-plt.plot(epochs_range, val_sens, label='sensitivity vs specificity')
+plt.plot(epochs_range, spec, label='especificidad vs sensibilidad ')
+plt.plot(epochs_range, val_sens, label='sensibilidad vs especificidad')
 plt.legend(loc='upper right')
-plt.title('specificity vs sensitivity ')
+plt.title('especificidad vs sensibilidad ')
 plt.show()
- 
 #devuelve la precisión del entrenamiento
-print("Training Accuracy:"), print(history.history['specificity_at_sensitivity'][-1])
-print("Testing Accuracy:"), print(history.history['sensitivity_at_specificity'][-1])
+print("Exactitud entrenamiento"), print(history.history['specificity_at_sensitivity'][-1])
+print("Exactitud validacion"), print(history.history['sensitivity_at_specificity'][-1])
 
 # Matriz de confusión 
 import itertools
