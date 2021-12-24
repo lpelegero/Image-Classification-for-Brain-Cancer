@@ -120,7 +120,7 @@ from keras.layers import Activation, Dropout, Flatten, Dense
 import tensorflow as tf
 import keras
 #Creamos el modelo, bajamos los pixeles de 500 a 200 para bajar el tiempo de procesamiento.
-#Como funcion de activacion utilizamos Relu para las capas escondidas y sigmoid para la capa de salida
+#Como funcion de activacion utilizamos Relu para las capas escondidas y softmax para la capa de salida
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=(200, 200, 3)))
 model.add(Activation('relu'))
