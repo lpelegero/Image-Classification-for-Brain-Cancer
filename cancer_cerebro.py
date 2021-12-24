@@ -286,27 +286,3 @@ y_pred=np.argmax(y_pred, axis=1)
 y_pred[1]
 y_true = validation_generator.classes
 make_confusion_matrix(y_true, y_pred, classes = ['Meniongina','Glioma','Pituitario'], figsize = (10, 10), text_size = 15)
-
-# 6) APLICACION FLASK
-
-model.save('/content/drive/MyDrive/flask/model.hdf5')
-
-!mkdir -p /drive/ngrok-ssh
-# %cd /drive/ngrok-ssh
-!wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O ngrok-stable-linux-amd64.zip
-!unzip -u ngrok-stable-linux-amd64.zip
-!cp /drive/ngrok-ssh/ngrok /ngrok
-!chmod +x /ngrok
-
-!/ngrok authtoken 22DtvGEHks2xlQn8Jp6aIqxAwaV_2hTjrAzSWDZMb596oNxkJ
-
-from flask import Flask 
-from flask_ngrok import run_with_ngrok 
-app2 = Flask(__name__) 
-run_with_ngrok(app2)    
-  
-@app.route("/") 
-def home(): 
-    return "<h1>Clasificación de imágenes de cáncer de cerebro mediante aprendizaje profundo</h1>"
-    
-app2.run()
